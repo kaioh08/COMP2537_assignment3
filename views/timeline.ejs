@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>timeline page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/scripts/timeline.js"></script>
+    <link rel="stylesheet" href="/styles/style.css" />
+
+    <style>
+      .history {
+        margin: 3px 3px;
+        padding: 1.5rem 0.5rem;
+        background-color: rgb(255, 255, 255);
+        border: rgb(255, 0, 0) 1px solid;
+        border-radius: 1rem;
+      }
+      main {
+        display: grid;
+        grid-template-columns: auto auto auto;
+      }
+      .user-info {
+        margin: 3px 3px;
+        padding: 1.5rem 0.5rem;
+        background-color: rgb(243, 240, 240);
+        border: rgb(255, 0, 0) 1px solid;
+        border-radius: 1rem;
+        display: grid;
+        grid-template-rows: auto auto auto auto;
+        grid-template-columns: auto;
+      }
+      .prev-order {
+        margin: 3px 3px;
+        padding: 1.5rem 0.5rem;
+        background-color: rgb(255, 255, 255);
+        border: rgb(255, 0, 0) 1px solid;
+        border-radius: 1rem;
+      }
+      .prev-order li{
+        list-style-type: decimal;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img src="./banner.jpeg" height="60%" alt="banner">
+  </header>
+    <nav>
+      <a href="/home" id="Homepage"> Home </a>
+      <a href="/search" id="Searchpage"> Search </a>
+      <a href="/timeline" id="Historypage"> Account </a>
+      <a href="/shoppingcart"> Cart </a>
+    </nav>
+
+    <main>
+      <div class="user-info">
+        <div>
+          <p>Name: <%=details.firstname %></p>
+        </div>
+        <div>
+          <p>email: <%=details.email %></p>
+        </div>
+        <form action="/logout" method="POST">
+          <button>Logout</button>
+        </form>
+      </div>
+
+      <div class="prev-order">
+        <div>
+          <p>Previous Orders</p>
+        </div>
+        <% if (allOrders.length === 0) { %>
+        <p>No Orders yet!</p>
+        <div>
+        <ol>
+          <% } %> <% allOrders.forEach(order => { %>
+          <li>
+            <button class="orderButton" id="<%=order._id %>">Order</button>
+          </li>
+          <br>
+          <% }) %>
+        </ol>
+      </div>
+    </main>
+  </body>
+
+  <footer>
+    <h5>Copyright © Kai Oh 2022</h5>
+  </footer>
+</html>
